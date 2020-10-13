@@ -1,0 +1,9 @@
+SELECT *
+WHERE
+{
+  ?place a dbo:PopulatedPlace;
+  rdfs:label ?cityName;
+  dbo:country dbr:Belgium
+
+  FILTER(lang(?cityName) = 'en' or lang(?cityName) = 'nl' or lang(?cityName) = 'fr')
+}
