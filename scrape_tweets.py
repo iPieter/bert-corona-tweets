@@ -23,8 +23,9 @@ def get_set_of_places():
 
 
 class MyStreamListener(tweepy.StreamListener):
-    def __init__(self):
+    def __init__(self, api):
         self.locations = get_set_of_places()
+        self.api = api
 
     def estimate_region(self, status):
 
@@ -60,7 +61,7 @@ def main():
 
     api = tweepy.API(auth)
 
-    myStreamListener = MyStreamListener()
+    myStreamListener = MyStreamListener(api)
     myStream = tweepy.Stream(auth=api.auth, listener=myStreamListener, wait_on_rate_limit=True,
                              wait_on_rate_limit_notify=True)
     locations = [2.427978515625,
