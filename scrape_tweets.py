@@ -3,6 +3,7 @@ import csv
 import tweepy
 import json
 import re
+import time
 
 
 def get_set_of_places():
@@ -76,4 +77,11 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    retries = [1, 2, 4, 8, 16]
+    while retries:
+        try:
+            main()
+        except ConnectionError as e:
+            print("Connection error, retrying")
+            print(e)
+            time.sleep(retries.pop())
