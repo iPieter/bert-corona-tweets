@@ -5,6 +5,8 @@ import json
 import re
 import time
 
+from urllib3.exceptions import ProtocolError
+
 
 def get_set_of_places():
     locations = set()
@@ -77,11 +79,15 @@ def main():
 
 
 if __name__ == '__main__':
-    retries = [1, 2, 4, 8, 16]
+    retries = [pow(2,i) for i in range(10)] # Exponential backoff
     while retries:
         try:
             main()
         except ConnectionError as e:
+            print("Connection error, retrying")
+            print(e)
+            time.sleep(retries.pop())
+        except ProtocolError as e:
             print("Connection error, retrying")
             print(e)
             time.sleep(retries.pop())
