@@ -21,6 +21,7 @@ def get_set_of_places():
     locations.add("belgium")
     locations.add("belgie")
     locations.add("belgië")
+    locations.add("gent")
     locations.add("🇧🇪")
     return locations
 
@@ -74,7 +75,7 @@ def main():
 
     myStream.filter(
         track=["coronAlert", "lockdown", "#lockdown", "mondmasker", "#coronavirus", "corona", "virus", "covid",
-               "avondklok", "curfew", "Couvre-feu"],
+               "avondklok", "curfew", "Couvre-feu", "-#endSARS"],
         languages=["nl", "en", "fr"])
 
 
