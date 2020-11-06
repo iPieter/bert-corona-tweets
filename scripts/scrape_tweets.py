@@ -10,7 +10,7 @@ from urllib3.exceptions import ProtocolError
 
 def get_set_of_places():
     locations = set()
-    with open('locations.csv') as csvfile:
+    with open('../data/locations.csv') as csvfile:
         reader = csv.reader(csvfile, delimiter=',', quotechar='"')
         for row in reader:
             loc = re.sub(r'\s\(.*\)', '', row[1]).lower()
@@ -52,7 +52,7 @@ class MyStreamListener(tweepy.StreamListener):
         if self.estimate_region(status):
             status.text = status.text if not status.truncated else status.extended_tweet['full_text']
             print(status.text)
-            with open("tweets.jsonl", "a+", encoding="utf-8") as file_object:
+            with open("../data/tweets.jsonl", "a+", encoding="utf-8") as file_object:
                 # Append 'hello' at the end of file
                 json.dump(status._json, file_object, ensure_ascii=False)
                 file_object.write("\n")
