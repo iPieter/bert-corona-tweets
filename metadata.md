@@ -1,5 +1,3 @@
-# Support for corona-measures in Belgium
-
 ## Metadata description
 For each tweet, we save the following metadata.
 
